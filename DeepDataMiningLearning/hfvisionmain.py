@@ -176,10 +176,9 @@ def load_visiondataset(data_name=None, split="train", train_dir=None, validation
             data_split=f"{split}"
         else:
             data_split=None
-        # Downloading and loading a dataset from the hub.
+
         raw_datasets = load_dataset(data_name,split=data_split, cache_dir=mycache_dir, verification_mode='no_checks')#, trust_remote_code=True) #ignore_verifications=True
-        # See more about loading any type of standard or custom dataset (from files, python dict, pandas DataFrame, etc) at
-        # https://huggingface.co/docs/datasets/loading_datasets.html.)
+
     else:
         data_files = {}
         if train_dir is not None:
@@ -190,12 +189,7 @@ def load_visiondataset(data_name=None, split="train", train_dir=None, validation
             "imagefolder",
             data_files=data_files,
         )
-        # See more about loading custom images at
-        # https://huggingface.co/docs/datasets/v2.0.0/en/image_process#imagefolder.
-    #splits=raw_datasets.split
-    # print(raw_datasets.columns)
-    # If we don't have a validation split, split off a percentage of train as validation.
-    #args.train_val_split = None if "validation" in dataset.keys() else args.train_val_split
+
     split_datasets = DatasetDict()
     if isinstance(raw_datasets.column_names, dict):#'train' 'test' key
         print("All keys in raw datasets:", raw_datasets['train']) #
@@ -224,9 +218,7 @@ def load_visiondataset(data_name=None, split="train", train_dir=None, validation
     if task == "object-detection":
         image_column_name = "image"
         label_column_name = "objects" #for object detection
-        # remove_idx = [590, 821, 822, 875, 876, 878, 879]
-        # keep = [i for i in range(len(split_datasets["train"])) if i not in remove_idx]
-        # split_datasets["train"] = split_datasets["train"].select(keep)
+
     elif task == "image-classification":
         #some datset the labels name is different
         if data_name == "food101": #https://huggingface.co/datasets/food101

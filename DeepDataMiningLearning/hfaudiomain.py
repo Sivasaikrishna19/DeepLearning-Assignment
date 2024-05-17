@@ -55,11 +55,6 @@ def trainmain(args):
         model, processor, feature_extractor = load_featureextractor_model(args.model_name_or_path, tokenizer, cache_dir=mycache_dir, config=None, model_args=None, gradient_checkpointing=args.use_gradientcheckpoint)
         starting_epoch = 0
     
-    # model, feature_extractor, processor, starting_epoch = \
-    #     loadmodel(args.model_name_or_path, custommodel=args.custommodel, \
-    #             task=args.task, id2label=id2label, label2id=label2id, \
-    #             vocab_path=vocab_path, pretrained=args.pretrained, \
-    #             unfreezename=args.unfreezename, freeze_feature_encoder=args.freeze_feature_encoder, freeze_base_model=args.freeze_basemodel, return_attention_mask=True)
     
     model_input_name = feature_extractor.model_input_names[0]
     print("model_input_name:", model_input_name) #input_values

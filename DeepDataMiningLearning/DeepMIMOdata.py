@@ -61,19 +61,10 @@ def complex_normal(shape, var=1.0):
     : ``shape``, ``dtype``
         Tensor of complex normal random variables.
     """
-    # Half the variance for each dimension
-    #var_dim = np.complex64(var/2)
-    #var_dim = tf.cast(var, dtype.real_dtype)/tf.cast(2, dtype.real_dtype)
-    #stddev = np.sqrt(var_dim)
-
-    # Generate complex Gaussian noise with the right variance
     stddev = np.sqrt(var/2)
     xr = np.random.normal(loc=0.0, scale=stddev, size=shape)
     xi = np.random.normal(loc=0.0, scale=stddev, size=shape)
     x = xr + 1j*xi
-    # xr = tf.random.normal(shape, stddev=stddev, dtype=dtype.real_dtype)
-    # xi = tf.random.normal(shape, stddev=stddev, dtype=dtype.real_dtype)
-    # x = tf.complex(xr, xi)
 
     return x
 
